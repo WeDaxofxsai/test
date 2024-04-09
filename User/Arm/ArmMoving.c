@@ -1,7 +1,6 @@
 #include "ArmMoving.h"
 
 Arm controlData;
-
 /**
  * 初始化机械臂运动状态
  * @param p 指向Arm结构体的指针，用于存储机械臂的各种状态参数
@@ -31,8 +30,8 @@ void armMovingInit(Arm *p){
 void getAnD(Arm *p, float d, float x, float y) 
 {
     // 将坐标系转换为机器人手臂的工作空间坐标系
-    x -= 104.0f;
-    y = 105.0f - y;
+    x -= 91.0f;
+    y = 94.0f - y;
     
     // 如果目标点在机器人手臂的工作空间内，则不做任何动作
     if (x <= 1 && x >= -1 && y <= 1 && y >= -1){
@@ -42,8 +41,8 @@ void getAnD(Arm *p, float d, float x, float y)
     }
     
     // 计算手臂应该移动的距离和角度变化
-    float delta_x = x * 6 / 50;
-    float delta_y = y * 6 / 50;
+    float delta_x = x * 6 / 63;
+    float delta_y = y * 6 / 63;
 
     // 计算手臂的新位置和角度，确保不超过最大允许距离
     if (p->x + delta_x <= ARMLENGTH)

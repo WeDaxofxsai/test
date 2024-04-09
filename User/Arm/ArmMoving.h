@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-#define ARMLENGTH 44.0
+#define ARMLENGTH 30.0
 #define DISTANSEMAX 9.0
 #define ARMHIGHT 40.0
 #define ANGELTOPWM 11.1

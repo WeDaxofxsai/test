@@ -86,7 +86,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  armMovingInit(&controlData);    
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -113,6 +113,7 @@ int main(void)
   MX_TIM5_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
+  armMovingInit(&controlData);    
   oledInit();
   oledDrawBMP(0, 0, 128, 8, (unsigned char *)BMP);
   servoInit();
@@ -120,9 +121,10 @@ int main(void)
   motorInit();
   usmart_dev.init(72);
   FormDataInit(&OpennMvData);
+  HAL_Delay(1000);
   beepBeep(getMemoryUsage(OUT));
   beepBeep(eepromTest());
-  HAL_Delay(1000);
+
   oledCLS();
   rtcSetTime(2024, 3, 24, 9, 8, 40);
 
@@ -170,7 +172,8 @@ int main(void)
                 break;
             case 70:
                 str = "2    ";
-                usart3Print(aimColor, 1);
+                usart3Print(aimColor, 4);
+                HAL_Delay(1000);
                 testProcess();
 
                 break;
@@ -212,21 +215,29 @@ int main(void)
                 break;
             case 22:
                 str = "*    ";
+                usart3Print(aimColor, 4);
+                beepBeep(1);
                 break;
             case 24:
                 str = "UP   ";
+                resetProcess();
                 break;
             case 82:
                 str = "DOWM ";
+                clawStateChange(CIRCLE);
                 break;
             case 8:
                 str = "LEFT ";
+                usart3Print(aimColor, 4);
+                HAL_Delay(1000);
+                testDuiZhun();
                 break;
             case 90:
                 str = "RIGHT";
                 break;
             case 28:
                 str = "OK   ";
+                HAL_NVIC_SystemReset();
                 break;
             default:
                 str = "NULL ";

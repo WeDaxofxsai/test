@@ -271,16 +271,16 @@ uint8_t clawStateChange(ClawState state)
     switch (state)
     {
     case OPEN:
-        motorMove2Pos(&motor4, 6400, 0.5, 0.5, 10000);
+        motorMove2Pos(&motor4, 6400, 0.05, 0.05, 5000);
         break;
     case CLOSE:
-        motorMove2Pos(&motor4, 4800, 0.5, 0.5, 0);
+        motorMove2Pos(&motor4, 4800, 0.05, 0.05, 0);
         break;
     case SQUARE:
-        motorMove2Pos(&motor4, 4800, 0.5, 0.5, 2000);
+        motorMove2Pos(&motor4, 4800, 0.05, 0.05, 2000);
         break;
     case CIRCLE:
-        motorMove2Pos(&motor4, 6400, 0.5, 0.5, 1500);
+        motorMove2Pos(&motor4, 6400, 0.05, 0.05, 1500);
     break;
     default:
         break;

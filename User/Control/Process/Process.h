@@ -8,5 +8,6 @@ extern uint8_t pass;
 
 void testProcess(void);
 void resetProcess(void);
+void testDuiZhun(void);
 
 #endif /*__PROCESS_H__*/

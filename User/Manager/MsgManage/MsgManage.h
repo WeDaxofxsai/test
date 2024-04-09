@@ -13,9 +13,9 @@
 typedef struct _FormData
 {
     uint8_t Rx_flag;	   // 接收完成标志
-    uint8_t Rx_len;		   // 接收长度
+    uint8_t Rx_len; 	   // 接收长度
     uint8_t frame_head[2]; // 帧头
-    uint8_t frame_tail;	   // 帧尾
+    uint8_t frame_tail;    // 帧尾
     uint8_t color, shape;
     float cx, cy, distanse, area;
     uint8_t RxBuffer[FORMDATA_RXBUFFER_LEN]; // 数据存储

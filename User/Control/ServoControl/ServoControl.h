@@ -28,7 +28,7 @@ typedef enum
     ARM = 0,
     CLAW = 1,
     SPIN = 2,
-} Tools;
+}Tools;
 
 void servoInit(void);
 void servoAction(Tools tool, uint16_t targetAngel, uint16_t runTime);

@@ -27,8 +27,8 @@ void servoInit(void)
         servo[i].Angel = 1500; /* 90度 */
     }
     servoAction(ARM, 1200, 5000);
-    //servoAction(SPIN, 1100, 5000); //调试时改动
-    servoAction(SPIN, 2360, 5000);
+    servoAction(SPIN, 1100, 5000); //调试时改动
+    //servoAction(SPIN, 2360, 5000);
     servoAction(CLAW, 1320, 5000);
 }
 
@@ -74,23 +74,23 @@ void runServoAction(uint8_t servoNum, uint16_t targetAngel, uint16_t time)
  * @param  targetAngel 目标角度，伺服需要移动到的角度值。
  * @param  time 完成目标角度移动所需的时间（单位：毫秒）。
  */
-void servoVelocityControl(uint8_t servoNum, uint16_t targetAngel, uint16_t time)
-{        
-    // 计算当前角度到目标角度的差值，并按一定比例计算出每阶段应该增加的角度值和时间
-    uint16_t dPwm = targetAngel - servo[servoNum].Angel;
-    uint16_t dup = dPwm / 3; // 角度差均分
-    uint16_t dtime = time / 3; // 时间均分
-    /*减速过程*/
-    // 通过三次逐渐减小的角度和时间调整，实现平滑减速到达目标角度
-    for(uint8_t i = 1; i <= 3; i++){
-        servoAction(servoNum, servo[servoNum].Angel + dup * 2, dtime); // 每次增加的角度递减，时间递增
-        dup /= 3; // 下一次增加的角度值减小
-        dtime = dtime * 2 / 3; // 下一次等待的时间增加
-        if (dup <= 10 || dtime <= 50) break; // 当角度增量或时间小于一定值时，结束循环
-    }
-    // 最后，使用计算出的最终时间，执行到达目标角度的动作
-    servoAction(servoNum, targetAngel, dtime * 3);
-}
+//void servoVelocityControl(uint8_t servoNum, uint16_t targetAngel, uint16_t time)
+//{        
+//    // 计算当前角度到目标角度的差值，并按一定比例计算出每阶段应该增加的角度值和时间
+//    uint16_t dPwm = targetAngel - servo[servoNum].Angel;
+//    uint16_t dup = dPwm / 3; // 角度差均分
+//    uint16_t dtime = time / 3; // 时间均分
+//    /*减速过程*/
+//    // 通过三次逐渐减小的角度和时间调整，实现平滑减速到达目标角度
+//    for(uint8_t i = 1; i <= 3; i++){
+//        servoAction(servoNum, servo[servoNum].Angel + dup * 2, dtime); // 每次增加的角度递减，时间递增
+//        dup /= 3; // 下一次增加的角度值减小
+//        dtime = dtime * 2 / 3; // 下一次等待的时间增加
+//        if (dup <= 10 || dtime <= 50) break; // 当角度增量或时间小于一定值时，结束循环
+//    }
+//    // 最后，使用计算出的最终时间，执行到达目标角度的动作
+//    servoAction(servoNum, targetAngel, dtime * 3);
+//}
 
 /**
  * @brief  对指定伺服进行速度控制，以实现平滑的角运动。
@@ -98,7 +98,7 @@ void servoVelocityControl(uint8_t servoNum, uint16_t targetAngel, uint16_t time)
  * @param  targetAngel 目标角度，伺服需要移动到的角度值。
  * @param  time 完成目标角度移动所需的时间（单位：毫秒）。
  */
-void servoVelocityControl(uint8_t servoNum, uint16_t targetAngel, uint16_t time)
+void servoVelocityControl(Tools servoNum, uint16_t targetAngel, uint16_t time)
 {        
     // 计算当前角度到目标角度的差值，并按一定比例计算出每阶段应该增加的角度值和时间
     uint16_t dPwm = targetAngel - servo[servoNum].Angel;
